@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Luig.Data;
+using Luig.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +12,9 @@ namespace Luig.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            FrontPage frontpage = new FrontPage();
+            frontpage.WorkInProgress = DataLuigContext.GetLatestWips();
+            return View(frontpage);
         }
 
         public ActionResult About()
