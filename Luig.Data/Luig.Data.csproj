@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataLuigContext.cs" />
+    <Compile Include="Models\Articles.cs" />
     <Compile Include="Models\WIP.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

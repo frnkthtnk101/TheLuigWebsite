@@ -19,6 +19,14 @@ namespace Luig.Data
 
         }
 
+        public static Articles[] GetArticles()
+        {
+            using(IDbConnection db = new SqlConnection(ConnectionString))
+            {
+                return db.Query<Articles>("SELECT [Id],[Title],[SubTitle],[Anchor],[ImagePath] FROM [DataLuig].[dbo].[Articles]").ToArray();
+            }
+        }
+
         public static WIP[] GetLatestWips()
         {
             using (IDbConnection db = new SqlConnection(ConnectionString))
