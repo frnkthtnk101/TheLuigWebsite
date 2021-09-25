@@ -7,7 +7,7 @@
       <Diagram DiagramId="e92b3a8b319244ab9c036a9b60c40d48" Name="Diagram1">
         <EntityTypeShape EntityType="LuigDevModel.Article" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LuigDevModel.User" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LuigDevModel.WorkInProgress" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LuigDevModel.WorkInProgress" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
