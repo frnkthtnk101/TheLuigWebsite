@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Luig.Models.Article>
+﻿@model Luig.Models.Article[]
 
 @{
     ViewBag.Title = "View";
@@ -8,47 +8,28 @@
     <h2>My Articles</h2>
 </div>
 
-@if (Model is null)
+@if (Model is null || Model.Length <= 0)
 {
     <p>Awh Luig, I couldn't get any articles for you!</p>
 }
 else
 {
     <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SubTitle)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Anchor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImagePath)
-            </th>
-            <th></th>
-        </tr>
         @foreach (var item in Model)
         {
             <tr>
+                <td><img src="@item.ImagePath" alt="My Cool Image"/></td>
+            </tr>
+            <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SubTitle)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Anchor)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ImagePath)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    <table>
+                        <tr>
+                            <td><H1>@item.Title</H1></td>
+                        </tr>
+                        <tr>
+                            <td>@item.SubTitle</td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
         }

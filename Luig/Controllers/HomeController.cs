@@ -26,9 +26,21 @@ namespace Luig.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            var ContactInfo = new ContactInfo()
+            {
+                Title = "Contact Me!"
+            };
+            return View(ContactInfo);
+        }
+        [HttpPost]
+        public ActionResult Submit(string aLuigMessage)
+        {
+            Console.WriteLine(aLuigMessage);
+            var ContactInfo = new ContactInfo()
+            {
+                Title = "Thanks for contacting Me!"
+            };
+            return View("Contact", ContactInfo);
         }
     }
 }

@@ -7,6 +7,7 @@ using Luig.Models;
 using Luig.Data;
 using Luig.Data.Models;
 using AutoMapper;
+using System.IO;
 
 namespace Luig.Controllers
 {
@@ -24,7 +25,7 @@ namespace Luig.Controllers
             Article[] webArticles = new Article[length];
             for (int i = 0; i < length; i++)
                 webArticles[i] = mapper.Map<Articles, Article>(articles[i]);
-            return View(articles);
+            return View(webArticles);
         }
     }
 }

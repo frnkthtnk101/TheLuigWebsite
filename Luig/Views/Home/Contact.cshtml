@@ -1,17 +1,30 @@
-﻿@{
-    ViewBag.Title = "Contact";
+﻿@model Luig.Models.ContactInfo
+<h2>@Model.Title</h2>
+<h3>Leave me a message and I will get back to you!</h3>
+<!--https://www.w3schools.com/tags/tag_textarea.asp-->
+
+@if (Model.HideForm)
+{
+    <p>Thanks! I will get back to you when I can.</p>
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+else
+{
+    <form action="Submit" method="post">
+        <table>
+            <tr>
+                <td>Please send me a message. I will get back to you as soon as I can.</td>
+            </tr>
+            <tr>
+                <td>
+                    <textarea id="aLuigMessage" rows="10" cols="500" draggable="false"></textarea>
+                </td>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
-
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+            </tr>
+            <tr>
+                <td>
+                    <button id="Submit" onclick="SubmitMessage()">Thank you!</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+}
