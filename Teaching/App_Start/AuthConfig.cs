@@ -38,7 +38,7 @@ namespace Teaching.App_Start
                     if (context.TryGetBasicCredentials(out clientId, out clientSecret))
                     {
                         //for testing purposes, I want to keep this for now.
-                        if (clientId == "CMIS308DS308" && clientSecret == "ThisIsNoSecretKey")
+                        if (clientId == "CMIS308DS308" && clientSecret == "webAPI")
                         {
                             context.Validated();
                         }
