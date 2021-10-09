@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luig.Commons", "..\Luig.Com
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luig.DataModels", "..\Luig.DataModels\Luig.DataModels.csproj", "{CC0BFABB-9DA1-4299-8E20-7DE19541E67E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luig.Tools", "..\Luig.Tools\Luig.Tools.csproj", "{F4480679-8D9B-45B1-8A5E-9CB1540BDBDB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{CC0BFABB-9DA1-4299-8E20-7DE19541E67E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC0BFABB-9DA1-4299-8E20-7DE19541E67E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC0BFABB-9DA1-4299-8E20-7DE19541E67E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4480679-8D9B-45B1-8A5E-9CB1540BDBDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4480679-8D9B-45B1-8A5E-9CB1540BDBDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4480679-8D9B-45B1-8A5E-9CB1540BDBDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4480679-8D9B-45B1-8A5E-9CB1540BDBDB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

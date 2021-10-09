@@ -1,15 +1,18 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 
-
-namespace Teaching.Tools
+namespace Luig.Helpers
 {
     public static class Security
     {
 
-        private static string Key 
+        private static string Key
         {
             get
             {
@@ -32,7 +35,7 @@ namespace Teaching.Tools
             using (AesCryptoServiceProvider aesAlg = new AesCryptoServiceProvider())
             {
                 aesAlg.Key = Encoding.ASCII.GetBytes(Key);
-                aesAlg.IV =  Encoding.ASCII.GetBytes(IV);
+                aesAlg.IV = Encoding.ASCII.GetBytes(IV);
 
                 // Create an encryptor to perform the stream transform.
                 ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);

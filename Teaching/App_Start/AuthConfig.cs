@@ -1,4 +1,5 @@
-﻿using Microsoft.Owin;
+﻿using Luig.Business.Managers;
+using Microsoft.Owin;
 using Microsoft.Owin.Infrastructure;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Web;
 using System.Web.Http;
-using Teaching.Business;
+
 
 namespace Teaching.App_Start
 {
@@ -20,8 +21,10 @@ namespace Teaching.App_Start
             {
                 OnGrantResourceOwnerCredentials = async context =>
                 {
-                    var authorizer = new Authorizer();
-                    var authorizedUser = authorizer.Authorize(context.UserName, context.Password);
+                    var authorizer = new AuthorizationManager();
+                    var protectedUserName = authorizer.ProtectString(context.UserName);
+                    var protectedPassword = authorizer.ProtectString(context.Password);
+                    var authorizedUser = authorizer.AuthorizeCredentials(protectedUserName, protectedPassword);
                     if (authorizedUser)
                     {
                         var claimsIdentity = new ClaimsIdentity(context.Options.AuthenticationType);
