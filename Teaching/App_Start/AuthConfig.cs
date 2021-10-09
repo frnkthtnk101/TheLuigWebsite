@@ -21,7 +21,7 @@ namespace Teaching.App_Start
                 OnGrantResourceOwnerCredentials = async context =>
                 {
                     var authorizer = new Authorizer();
-                    var authorizedUser = context.UserName == "rranjan" && context.Password == "password@123"; //authorizer.Authorize(context.UserName, context.Password);
+                    var authorizedUser = authorizer.Authorize(context.UserName, context.Password);
                     if (authorizedUser)
                     {
                         var claimsIdentity = new ClaimsIdentity(context.Options.AuthenticationType);
@@ -37,7 +37,8 @@ namespace Teaching.App_Start
                     string clientSecret;
                     if (context.TryGetBasicCredentials(out clientId, out clientSecret))
                     {
-                        if (clientId == "rajeev" && clientSecret == "secretKey")
+                        //for testing purposes, I want to keep this for now.
+                        if (clientId == "CMIS308DS308" && clientSecret == "ThisIsNoSecretKey")
                         {
                             context.Validated();
                         }
