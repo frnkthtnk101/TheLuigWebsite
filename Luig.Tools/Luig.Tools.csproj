@@ -33,7 +33,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\Teaching\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\Teaching\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -43,12 +50,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CreatePasswords.cs" />
+    <Compile Include="CreateUser.cs" />
+    <Compile Include="CreateUsers.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Luig.Business\Luig.Business.csproj">
+      <Project>{656AD1F2-76B5-43C4-9575-40261FF3E0C7}</Project>
+      <Name>Luig.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Luig.Commons\Luig.Commons.csproj">
+      <Project>{358A5E5B-228F-4DEF-8187-0A6462A1057C}</Project>
+      <Name>Luig.Commons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Luig.DataModels\Luig.DataModels.csproj">
+      <Project>{CC0BFABB-9DA1-4299-8E20-7DE19541E67E}</Project>
+      <Name>Luig.DataModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

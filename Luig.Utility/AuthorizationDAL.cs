@@ -13,6 +13,7 @@ namespace Luig.Utility
         {
             using (var db = new LuigDevEntities())
             {
+       
                 var user = db.Users.Where(x => x.UserName == userName && x.UserPassword == password).FirstOrDefault();
                 string protectedUserName = string.Empty;
                 if (user != default(User))

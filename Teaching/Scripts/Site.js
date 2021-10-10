@@ -1,8 +1,8 @@
 ﻿/// <reference path="jquery-3.4.1.intellisense.js" />
 
 var uriManager = {
-    var baseUrl = "/api/values/";
-    var access = "/accesstoken";
+    baseUrl : "api/values/",
+    access : "accesstoken"
 
 }
 
@@ -16,12 +16,15 @@ function Authorize() {
         password: password
     };
     $.ajax({
+        type: "POST",
         url: uriManager.access,
+        contentType: 'application/json',
+        dataType: 'json',
         beforeSend: function (request) {
             request.setRequestHeader("Authorization", bearer);
         },
-        data = JSON.stringify(bodyOfRequest),
-        success = function (response) {
+        data: JSON.stringify(bodyOfRequest),
+        success : function (response) {
             sessionStorage.setItem("access", response);
         }
     });

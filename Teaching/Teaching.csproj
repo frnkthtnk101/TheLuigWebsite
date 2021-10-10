@@ -176,7 +176,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Business\Authorizer.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -185,7 +184,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Token.cs" />
-    <Compile Include="Tools\Security.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -253,6 +251,10 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Luig.Business\Luig.Business.csproj">
+      <Project>{656AD1F2-76B5-43C4-9575-40261FF3E0C7}</Project>
+      <Name>Luig.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Luig.Commons\Luig.Commons.csproj">
       <Project>{358a5e5b-228f-4def-8187-0a6462a1057c}</Project>
       <Name>Luig.Commons</Name>
