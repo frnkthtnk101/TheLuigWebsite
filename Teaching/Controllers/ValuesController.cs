@@ -11,14 +11,15 @@ namespace Teaching.Controllers
     public class ValuesController : ApiController
     {
         [HttpGet]
-        public IHttpActionResult ([FromBody] string InputType, [FromBody] string InputRequest)
+        public IHttpActionResult Execute ([FromBody] string InputType, [FromBody] string InputRequest)
         {
-            if (InputType == "SQL")
-            {
+            //if (InputType == "SQL")
+            //{
 
-            }
-            else
-                ok
+            //}
+            //else
+            //    ok
+            return Ok();
         }
     }
 }

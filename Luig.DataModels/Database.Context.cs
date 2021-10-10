@@ -28,7 +28,6 @@ namespace Luig.DataModels
         public virtual DbSet<Article> Articles { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<WorkInProgress> WorkInProgresses { get; set; }
-        public virtual DbSet<C__RefactorLog> C__RefactorLog { get; set; }
         public virtual DbSet<GENDER> GENDERs { get; set; }
         public virtual DbSet<HOUSE_ADDRESS> HOUSE_ADDRESS { get; set; }
         public virtual DbSet<PERSON> People { get; set; }

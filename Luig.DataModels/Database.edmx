@@ -5,12 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="LuigDevModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="__RefactorLog">
-          <Key>
-            <PropertyRef Name="OperationKey" />
-          </Key>
-          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
-        </EntityType>
         <EntityType Name="Articles">
           <Key>
             <PropertyRef Name="Id" />
@@ -131,7 +125,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="LuigDevModelStoreContainer">
-          <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Articles" EntityType="Self.Articles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GENDER" EntityType="Self.GENDER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HOUSE_ADDRESS" EntityType="Self.HOUSE_ADDRESS" Schema="dbo" store:Type="Tables" />
@@ -192,7 +185,6 @@
           <EntitySet Name="Articles" EntityType="Self.Article" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="WorkInProgresses" EntityType="Self.WorkInProgress" />
-          <EntitySet Name="C__RefactorLog" EntityType="LuigDevModel.C__RefactorLog" />
           <EntitySet Name="GENDERs" EntityType="LuigDevModel.GENDER" />
           <EntitySet Name="HOUSE_ADDRESS" EntityType="LuigDevModel.HOUSE_ADDRESS" />
           <EntitySet Name="People" EntityType="LuigDevModel.PERSON" />
@@ -210,12 +202,6 @@
             <End Role="HOUSE_ADDRESS" EntitySet="HOUSE_ADDRESS" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="C__RefactorLog">
-          <Key>
-            <PropertyRef Name="OperationKey" />
-          </Key>
-          <Property Name="OperationKey" Type="Guid" Nullable="false" />
-        </EntityType>
         <EntityType Name="GENDER">
           <Key>
             <PropertyRef Name="gender_id" />
@@ -319,13 +305,6 @@
                 <ScalarProperty Name="WIPId" ColumnName="WIPId" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Message" ColumnName="Message" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="C__RefactorLog">
-            <EntityTypeMapping TypeName="LuigDevModel.C__RefactorLog">
-              <MappingFragment StoreEntitySet="__RefactorLog">
-                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

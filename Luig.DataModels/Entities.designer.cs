@@ -39,10 +39,25 @@ namespace Luig.DataModels
     partial void InsertWorkInProgress(WorkInProgress instance);
     partial void UpdateWorkInProgress(WorkInProgress instance);
     partial void DeleteWorkInProgress(WorkInProgress instance);
+    partial void InsertGENDER(GENDER instance);
+    partial void UpdateGENDER(GENDER instance);
+    partial void DeleteGENDER(GENDER instance);
+    partial void InsertPERSON(PERSON instance);
+    partial void UpdatePERSON(PERSON instance);
+    partial void DeletePERSON(PERSON instance);
+    partial void InsertHOUSE_ADDRESS(HOUSE_ADDRESS instance);
+    partial void UpdateHOUSE_ADDRESS(HOUSE_ADDRESS instance);
+    partial void DeleteHOUSE_ADDRESS(HOUSE_ADDRESS instance);
+    partial void InsertLIVING_SITUATION(LIVING_SITUATION instance);
+    partial void UpdateLIVING_SITUATION(LIVING_SITUATION instance);
+    partial void DeleteLIVING_SITUATION(LIVING_SITUATION instance);
+    partial void InsertZIP(ZIP instance);
+    partial void UpdateZIP(ZIP instance);
+    partial void DeleteZIP(ZIP instance);
     #endregion
 		
 		public EntitiesDataContext() : 
-				base(global::Luig.DataModels.Properties.Settings.Default.LuigDevConnectionString, mappingSource)
+				base(global::Luig.DataModels.Properties.Settings.Default.LuigDevConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -92,6 +107,46 @@ namespace Luig.DataModels
 			get
 			{
 				return this.GetTable<WorkInProgress>();
+			}
+		}
+		
+		public System.Data.Linq.Table<GENDER> GENDERs
+		{
+			get
+			{
+				return this.GetTable<GENDER>();
+			}
+		}
+		
+		public System.Data.Linq.Table<PERSON> PERSONs
+		{
+			get
+			{
+				return this.GetTable<PERSON>();
+			}
+		}
+		
+		public System.Data.Linq.Table<HOUSE_ADDRESS> HOUSE_ADDRESSes
+		{
+			get
+			{
+				return this.GetTable<HOUSE_ADDRESS>();
+			}
+		}
+		
+		public System.Data.Linq.Table<LIVING_SITUATION> LIVING_SITUATIONs
+		{
+			get
+			{
+				return this.GetTable<LIVING_SITUATION>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ZIP> ZIPs
+		{
+			get
+			{
+				return this.GetTable<ZIP>();
 			}
 		}
 	}
@@ -495,6 +550,904 @@ namespace Luig.DataModels
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.GENDER")]
+	public partial class GENDER : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _gender_id;
+		
+		private string _gender_name;
+		
+		private string _gender_discription;
+		
+		private EntitySet<PERSON> _PERSONs;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Ongender_idChanging(int value);
+    partial void Ongender_idChanged();
+    partial void Ongender_nameChanging(string value);
+    partial void Ongender_nameChanged();
+    partial void Ongender_discriptionChanging(string value);
+    partial void Ongender_discriptionChanged();
+    #endregion
+		
+		public GENDER()
+		{
+			this._PERSONs = new EntitySet<PERSON>(new Action<PERSON>(this.attach_PERSONs), new Action<PERSON>(this.detach_PERSONs));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gender_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int gender_id
+		{
+			get
+			{
+				return this._gender_id;
+			}
+			set
+			{
+				if ((this._gender_id != value))
+				{
+					this.Ongender_idChanging(value);
+					this.SendPropertyChanging();
+					this._gender_id = value;
+					this.SendPropertyChanged("gender_id");
+					this.Ongender_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gender_name", DbType="VarChar(11) NOT NULL", CanBeNull=false)]
+		public string gender_name
+		{
+			get
+			{
+				return this._gender_name;
+			}
+			set
+			{
+				if ((this._gender_name != value))
+				{
+					this.Ongender_nameChanging(value);
+					this.SendPropertyChanging();
+					this._gender_name = value;
+					this.SendPropertyChanged("gender_name");
+					this.Ongender_nameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gender_discription", DbType="VarChar(11) NOT NULL", CanBeNull=false)]
+		public string gender_discription
+		{
+			get
+			{
+				return this._gender_discription;
+			}
+			set
+			{
+				if ((this._gender_discription != value))
+				{
+					this.Ongender_discriptionChanging(value);
+					this.SendPropertyChanging();
+					this._gender_discription = value;
+					this.SendPropertyChanged("gender_discription");
+					this.Ongender_discriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GENDER_PERSON", Storage="_PERSONs", ThisKey="gender_id", OtherKey="person_gender_id")]
+		public EntitySet<PERSON> PERSONs
+		{
+			get
+			{
+				return this._PERSONs;
+			}
+			set
+			{
+				this._PERSONs.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_PERSONs(PERSON entity)
+		{
+			this.SendPropertyChanging();
+			entity.GENDER = this;
+		}
+		
+		private void detach_PERSONs(PERSON entity)
+		{
+			this.SendPropertyChanging();
+			entity.GENDER = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PERSON")]
+	public partial class PERSON : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _person_id;
+		
+		private string _person_first_name;
+		
+		private string _person_last_name;
+		
+		private string _person_email_name;
+		
+		private System.Nullable<int> _person_gender_id;
+		
+		private EntitySet<LIVING_SITUATION> _LIVING_SITUATIONs;
+		
+		private EntityRef<GENDER> _GENDER;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onperson_idChanging(int value);
+    partial void Onperson_idChanged();
+    partial void Onperson_first_nameChanging(string value);
+    partial void Onperson_first_nameChanged();
+    partial void Onperson_last_nameChanging(string value);
+    partial void Onperson_last_nameChanged();
+    partial void Onperson_email_nameChanging(string value);
+    partial void Onperson_email_nameChanged();
+    partial void Onperson_gender_idChanging(System.Nullable<int> value);
+    partial void Onperson_gender_idChanged();
+    #endregion
+		
+		public PERSON()
+		{
+			this._LIVING_SITUATIONs = new EntitySet<LIVING_SITUATION>(new Action<LIVING_SITUATION>(this.attach_LIVING_SITUATIONs), new Action<LIVING_SITUATION>(this.detach_LIVING_SITUATIONs));
+			this._GENDER = default(EntityRef<GENDER>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_person_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int person_id
+		{
+			get
+			{
+				return this._person_id;
+			}
+			set
+			{
+				if ((this._person_id != value))
+				{
+					this.Onperson_idChanging(value);
+					this.SendPropertyChanging();
+					this._person_id = value;
+					this.SendPropertyChanged("person_id");
+					this.Onperson_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_person_first_name", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string person_first_name
+		{
+			get
+			{
+				return this._person_first_name;
+			}
+			set
+			{
+				if ((this._person_first_name != value))
+				{
+					this.Onperson_first_nameChanging(value);
+					this.SendPropertyChanging();
+					this._person_first_name = value;
+					this.SendPropertyChanged("person_first_name");
+					this.Onperson_first_nameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_person_last_name", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string person_last_name
+		{
+			get
+			{
+				return this._person_last_name;
+			}
+			set
+			{
+				if ((this._person_last_name != value))
+				{
+					this.Onperson_last_nameChanging(value);
+					this.SendPropertyChanging();
+					this._person_last_name = value;
+					this.SendPropertyChanged("person_last_name");
+					this.Onperson_last_nameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_person_email_name", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string person_email_name
+		{
+			get
+			{
+				return this._person_email_name;
+			}
+			set
+			{
+				if ((this._person_email_name != value))
+				{
+					this.Onperson_email_nameChanging(value);
+					this.SendPropertyChanging();
+					this._person_email_name = value;
+					this.SendPropertyChanged("person_email_name");
+					this.Onperson_email_nameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_person_gender_id", DbType="Int")]
+		public System.Nullable<int> person_gender_id
+		{
+			get
+			{
+				return this._person_gender_id;
+			}
+			set
+			{
+				if ((this._person_gender_id != value))
+				{
+					if (this._GENDER.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onperson_gender_idChanging(value);
+					this.SendPropertyChanging();
+					this._person_gender_id = value;
+					this.SendPropertyChanged("person_gender_id");
+					this.Onperson_gender_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PERSON_LIVING_SITUATION", Storage="_LIVING_SITUATIONs", ThisKey="person_id", OtherKey="living_situation_person_id")]
+		public EntitySet<LIVING_SITUATION> LIVING_SITUATIONs
+		{
+			get
+			{
+				return this._LIVING_SITUATIONs;
+			}
+			set
+			{
+				this._LIVING_SITUATIONs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GENDER_PERSON", Storage="_GENDER", ThisKey="person_gender_id", OtherKey="gender_id", IsForeignKey=true)]
+		public GENDER GENDER
+		{
+			get
+			{
+				return this._GENDER.Entity;
+			}
+			set
+			{
+				GENDER previousValue = this._GENDER.Entity;
+				if (((previousValue != value) 
+							|| (this._GENDER.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._GENDER.Entity = null;
+						previousValue.PERSONs.Remove(this);
+					}
+					this._GENDER.Entity = value;
+					if ((value != null))
+					{
+						value.PERSONs.Add(this);
+						this._person_gender_id = value.gender_id;
+					}
+					else
+					{
+						this._person_gender_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("GENDER");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_LIVING_SITUATIONs(LIVING_SITUATION entity)
+		{
+			this.SendPropertyChanging();
+			entity.PERSON = this;
+		}
+		
+		private void detach_LIVING_SITUATIONs(LIVING_SITUATION entity)
+		{
+			this.SendPropertyChanging();
+			entity.PERSON = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.HOUSE_ADDRESS")]
+	public partial class HOUSE_ADDRESS : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _house_address_id;
+		
+		private string _house_address_line_one;
+		
+		private string _house_address_line_two;
+		
+		private System.Nullable<int> _house_address_zip_id;
+		
+		private EntitySet<LIVING_SITUATION> _LIVING_SITUATIONs;
+		
+		private EntityRef<ZIP> _ZIP;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onhouse_address_idChanging(int value);
+    partial void Onhouse_address_idChanged();
+    partial void Onhouse_address_line_oneChanging(string value);
+    partial void Onhouse_address_line_oneChanged();
+    partial void Onhouse_address_line_twoChanging(string value);
+    partial void Onhouse_address_line_twoChanged();
+    partial void Onhouse_address_zip_idChanging(System.Nullable<int> value);
+    partial void Onhouse_address_zip_idChanged();
+    #endregion
+		
+		public HOUSE_ADDRESS()
+		{
+			this._LIVING_SITUATIONs = new EntitySet<LIVING_SITUATION>(new Action<LIVING_SITUATION>(this.attach_LIVING_SITUATIONs), new Action<LIVING_SITUATION>(this.detach_LIVING_SITUATIONs));
+			this._ZIP = default(EntityRef<ZIP>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_house_address_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int house_address_id
+		{
+			get
+			{
+				return this._house_address_id;
+			}
+			set
+			{
+				if ((this._house_address_id != value))
+				{
+					this.Onhouse_address_idChanging(value);
+					this.SendPropertyChanging();
+					this._house_address_id = value;
+					this.SendPropertyChanged("house_address_id");
+					this.Onhouse_address_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_house_address_line_one", DbType="VarChar(29) NOT NULL", CanBeNull=false)]
+		public string house_address_line_one
+		{
+			get
+			{
+				return this._house_address_line_one;
+			}
+			set
+			{
+				if ((this._house_address_line_one != value))
+				{
+					this.Onhouse_address_line_oneChanging(value);
+					this.SendPropertyChanging();
+					this._house_address_line_one = value;
+					this.SendPropertyChanged("house_address_line_one");
+					this.Onhouse_address_line_oneChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_house_address_line_two", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string house_address_line_two
+		{
+			get
+			{
+				return this._house_address_line_two;
+			}
+			set
+			{
+				if ((this._house_address_line_two != value))
+				{
+					this.Onhouse_address_line_twoChanging(value);
+					this.SendPropertyChanging();
+					this._house_address_line_two = value;
+					this.SendPropertyChanged("house_address_line_two");
+					this.Onhouse_address_line_twoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_house_address_zip_id", DbType="Int")]
+		public System.Nullable<int> house_address_zip_id
+		{
+			get
+			{
+				return this._house_address_zip_id;
+			}
+			set
+			{
+				if ((this._house_address_zip_id != value))
+				{
+					if (this._ZIP.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onhouse_address_zip_idChanging(value);
+					this.SendPropertyChanging();
+					this._house_address_zip_id = value;
+					this.SendPropertyChanged("house_address_zip_id");
+					this.Onhouse_address_zip_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="HOUSE_ADDRESS_LIVING_SITUATION", Storage="_LIVING_SITUATIONs", ThisKey="house_address_id", OtherKey="living_situation_house_address_id")]
+		public EntitySet<LIVING_SITUATION> LIVING_SITUATIONs
+		{
+			get
+			{
+				return this._LIVING_SITUATIONs;
+			}
+			set
+			{
+				this._LIVING_SITUATIONs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ZIP_HOUSE_ADDRESS", Storage="_ZIP", ThisKey="house_address_zip_id", OtherKey="zip_id", IsForeignKey=true)]
+		public ZIP ZIP
+		{
+			get
+			{
+				return this._ZIP.Entity;
+			}
+			set
+			{
+				ZIP previousValue = this._ZIP.Entity;
+				if (((previousValue != value) 
+							|| (this._ZIP.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ZIP.Entity = null;
+						previousValue.HOUSE_ADDRESSes.Remove(this);
+					}
+					this._ZIP.Entity = value;
+					if ((value != null))
+					{
+						value.HOUSE_ADDRESSes.Add(this);
+						this._house_address_zip_id = value.zip_id;
+					}
+					else
+					{
+						this._house_address_zip_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ZIP");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_LIVING_SITUATIONs(LIVING_SITUATION entity)
+		{
+			this.SendPropertyChanging();
+			entity.HOUSE_ADDRESS = this;
+		}
+		
+		private void detach_LIVING_SITUATIONs(LIVING_SITUATION entity)
+		{
+			this.SendPropertyChanging();
+			entity.HOUSE_ADDRESS = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LIVING_SITUATION")]
+	public partial class LIVING_SITUATION : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _living_situation_person_id;
+		
+		private int _living_situation_house_address_id;
+		
+		private EntityRef<PERSON> _PERSON;
+		
+		private EntityRef<HOUSE_ADDRESS> _HOUSE_ADDRESS;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onliving_situation_person_idChanging(int value);
+    partial void Onliving_situation_person_idChanged();
+    partial void Onliving_situation_house_address_idChanging(int value);
+    partial void Onliving_situation_house_address_idChanged();
+    #endregion
+		
+		public LIVING_SITUATION()
+		{
+			this._PERSON = default(EntityRef<PERSON>);
+			this._HOUSE_ADDRESS = default(EntityRef<HOUSE_ADDRESS>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_living_situation_person_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int living_situation_person_id
+		{
+			get
+			{
+				return this._living_situation_person_id;
+			}
+			set
+			{
+				if ((this._living_situation_person_id != value))
+				{
+					if (this._PERSON.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onliving_situation_person_idChanging(value);
+					this.SendPropertyChanging();
+					this._living_situation_person_id = value;
+					this.SendPropertyChanged("living_situation_person_id");
+					this.Onliving_situation_person_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_living_situation_house_address_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int living_situation_house_address_id
+		{
+			get
+			{
+				return this._living_situation_house_address_id;
+			}
+			set
+			{
+				if ((this._living_situation_house_address_id != value))
+				{
+					if (this._HOUSE_ADDRESS.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onliving_situation_house_address_idChanging(value);
+					this.SendPropertyChanging();
+					this._living_situation_house_address_id = value;
+					this.SendPropertyChanged("living_situation_house_address_id");
+					this.Onliving_situation_house_address_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PERSON_LIVING_SITUATION", Storage="_PERSON", ThisKey="living_situation_person_id", OtherKey="person_id", IsForeignKey=true)]
+		public PERSON PERSON
+		{
+			get
+			{
+				return this._PERSON.Entity;
+			}
+			set
+			{
+				PERSON previousValue = this._PERSON.Entity;
+				if (((previousValue != value) 
+							|| (this._PERSON.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._PERSON.Entity = null;
+						previousValue.LIVING_SITUATIONs.Remove(this);
+					}
+					this._PERSON.Entity = value;
+					if ((value != null))
+					{
+						value.LIVING_SITUATIONs.Add(this);
+						this._living_situation_person_id = value.person_id;
+					}
+					else
+					{
+						this._living_situation_person_id = default(int);
+					}
+					this.SendPropertyChanged("PERSON");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="HOUSE_ADDRESS_LIVING_SITUATION", Storage="_HOUSE_ADDRESS", ThisKey="living_situation_house_address_id", OtherKey="house_address_id", IsForeignKey=true)]
+		public HOUSE_ADDRESS HOUSE_ADDRESS
+		{
+			get
+			{
+				return this._HOUSE_ADDRESS.Entity;
+			}
+			set
+			{
+				HOUSE_ADDRESS previousValue = this._HOUSE_ADDRESS.Entity;
+				if (((previousValue != value) 
+							|| (this._HOUSE_ADDRESS.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._HOUSE_ADDRESS.Entity = null;
+						previousValue.LIVING_SITUATIONs.Remove(this);
+					}
+					this._HOUSE_ADDRESS.Entity = value;
+					if ((value != null))
+					{
+						value.LIVING_SITUATIONs.Add(this);
+						this._living_situation_house_address_id = value.house_address_id;
+					}
+					else
+					{
+						this._living_situation_house_address_id = default(int);
+					}
+					this.SendPropertyChanged("HOUSE_ADDRESS");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ZIP")]
+	public partial class ZIP : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _zip_id;
+		
+		private string _zip_code;
+		
+		private string _zip_city;
+		
+		private string _zip_state;
+		
+		private EntitySet<HOUSE_ADDRESS> _HOUSE_ADDRESSes;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onzip_idChanging(int value);
+    partial void Onzip_idChanged();
+    partial void Onzip_codeChanging(string value);
+    partial void Onzip_codeChanged();
+    partial void Onzip_cityChanging(string value);
+    partial void Onzip_cityChanged();
+    partial void Onzip_stateChanging(string value);
+    partial void Onzip_stateChanged();
+    #endregion
+		
+		public ZIP()
+		{
+			this._HOUSE_ADDRESSes = new EntitySet<HOUSE_ADDRESS>(new Action<HOUSE_ADDRESS>(this.attach_HOUSE_ADDRESSes), new Action<HOUSE_ADDRESS>(this.detach_HOUSE_ADDRESSes));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_zip_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int zip_id
+		{
+			get
+			{
+				return this._zip_id;
+			}
+			set
+			{
+				if ((this._zip_id != value))
+				{
+					this.Onzip_idChanging(value);
+					this.SendPropertyChanging();
+					this._zip_id = value;
+					this.SendPropertyChanged("zip_id");
+					this.Onzip_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_zip_code", DbType="VarChar(5) NOT NULL", CanBeNull=false)]
+		public string zip_code
+		{
+			get
+			{
+				return this._zip_code;
+			}
+			set
+			{
+				if ((this._zip_code != value))
+				{
+					this.Onzip_codeChanging(value);
+					this.SendPropertyChanging();
+					this._zip_code = value;
+					this.SendPropertyChanged("zip_code");
+					this.Onzip_codeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_zip_city", DbType="VarChar(15) NOT NULL", CanBeNull=false)]
+		public string zip_city
+		{
+			get
+			{
+				return this._zip_city;
+			}
+			set
+			{
+				if ((this._zip_city != value))
+				{
+					this.Onzip_cityChanging(value);
+					this.SendPropertyChanging();
+					this._zip_city = value;
+					this.SendPropertyChanged("zip_city");
+					this.Onzip_cityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_zip_state", DbType="VarChar(12) NOT NULL", CanBeNull=false)]
+		public string zip_state
+		{
+			get
+			{
+				return this._zip_state;
+			}
+			set
+			{
+				if ((this._zip_state != value))
+				{
+					this.Onzip_stateChanging(value);
+					this.SendPropertyChanging();
+					this._zip_state = value;
+					this.SendPropertyChanged("zip_state");
+					this.Onzip_stateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ZIP_HOUSE_ADDRESS", Storage="_HOUSE_ADDRESSes", ThisKey="zip_id", OtherKey="house_address_zip_id")]
+		public EntitySet<HOUSE_ADDRESS> HOUSE_ADDRESSes
+		{
+			get
+			{
+				return this._HOUSE_ADDRESSes;
+			}
+			set
+			{
+				this._HOUSE_ADDRESSes.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_HOUSE_ADDRESSes(HOUSE_ADDRESS entity)
+		{
+			this.SendPropertyChanging();
+			entity.ZIP = this;
+		}
+		
+		private void detach_HOUSE_ADDRESSes(HOUSE_ADDRESS entity)
+		{
+			this.SendPropertyChanging();
+			entity.ZIP = null;
 		}
 	}
 }

@@ -32,5 +32,17 @@ namespace Luig.DataModels.Properties {
                 return ((string)(this["LuigDevConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-DSMRE2B;Initial Catalog=LuigDev;Persist Security Info=True;Us" +
+            "er ID=Luig;Password=Luig;MultipleActiveResultSets=True;Application Name=EntityFr" +
+            "amework")]
+        public string LuigDevConnectionString1 {
+            get {
+                return ((string)(this["LuigDevConnectionString1"]));
+            }
+        }
     }
 }
