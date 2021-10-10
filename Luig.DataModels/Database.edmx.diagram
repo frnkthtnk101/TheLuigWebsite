@@ -7,7 +7,15 @@
       <Diagram DiagramId="e92b3a8b319244ab9c036a9b60c40d48" Name="Diagram1">
         <EntityTypeShape EntityType="LuigDevModel.Article" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LuigDevModel.User" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LuigDevModel.WorkInProgress" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LuigDevModel.WorkInProgress" Width="1.5" PointX="2.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="LuigDevModel.C__RefactorLog" Width="1.5" PointX="0.875" PointY="3.875" />
+        <EntityTypeShape EntityType="LuigDevModel.GENDER" Width="1.5" PointX="5.75" PointY="1.25" />
+        <EntityTypeShape EntityType="LuigDevModel.HOUSE_ADDRESS" Width="1.5" PointX="13.25" PointY="1" />
+        <EntityTypeShape EntityType="LuigDevModel.PERSON" Width="1.5" PointX="9.375" PointY="1.25" />
+        <EntityTypeShape EntityType="LuigDevModel.ZIP" Width="1.5" PointX="8" PointY="5.125" />
+        <AssociationConnector Association="LuigDevModel.FK__PERSON__person_g__412EB0B6" />
+        <AssociationConnector Association="LuigDevModel.FK__HOUSE_ADD__house__3E52440B" />
+        <AssociationConnector Association="LuigDevModel.LIVING_SITUATION" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

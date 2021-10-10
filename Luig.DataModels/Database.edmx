@@ -4,7 +4,13 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LuigDevModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LuigDevModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
         <EntityType Name="Articles">
           <Key>
             <PropertyRef Name="Id" />
@@ -14,6 +20,41 @@
           <Property Name="SubTitle" Type="varchar" MaxLength="150" />
           <Property Name="Anchor" Type="varchar(max)" />
           <Property Name="ImagePath" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="GENDER">
+          <Key>
+            <PropertyRef Name="gender_id" />
+          </Key>
+          <Property Name="gender_id" Type="int" Nullable="false" />
+          <Property Name="gender_name" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="gender_discription" Type="varchar" MaxLength="11" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HOUSE_ADDRESS">
+          <Key>
+            <PropertyRef Name="house_address_id" />
+          </Key>
+          <Property Name="house_address_id" Type="int" Nullable="false" />
+          <Property Name="house_address_line_one" Type="varchar" MaxLength="29" Nullable="false" />
+          <Property Name="house_address_line_two" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="house_address_zip_id" Type="int" />
+        </EntityType>
+        <EntityType Name="LIVING_SITUATION">
+          <Key>
+            <PropertyRef Name="living_situation_person_id" />
+            <PropertyRef Name="living_situation_house_address_id" />
+          </Key>
+          <Property Name="living_situation_person_id" Type="int" Nullable="false" />
+          <Property Name="living_situation_house_address_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PERSON">
+          <Key>
+            <PropertyRef Name="person_id" />
+          </Key>
+          <Property Name="person_id" Type="int" Nullable="false" />
+          <Property Name="person_first_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="person_last_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="person_email_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="person_gender_id" Type="int" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -32,13 +73,91 @@
           <Property Name="Status" Type="numeric" Precision="1" Scale="0" />
           <Property Name="Message" Type="nvarchar" MaxLength="255" />
         </EntityType>
+        <EntityType Name="ZIP">
+          <Key>
+            <PropertyRef Name="zip_id" />
+          </Key>
+          <Property Name="zip_id" Type="int" Nullable="false" />
+          <Property Name="zip_code" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="zip_city" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="zip_state" Type="varchar" MaxLength="12" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__HOUSE_ADD__house__3E52440B">
+          <End Role="ZIP" Type="Self.ZIP" Multiplicity="0..1" />
+          <End Role="HOUSE_ADDRESS" Type="Self.HOUSE_ADDRESS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZIP">
+              <PropertyRef Name="zip_id" />
+            </Principal>
+            <Dependent Role="HOUSE_ADDRESS">
+              <PropertyRef Name="house_address_zip_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LIVING_SI__livin__3F466844">
+          <End Role="PERSON" Type="Self.PERSON" Multiplicity="1" />
+          <End Role="LIVING_SITUATION" Type="Self.LIVING_SITUATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERSON">
+              <PropertyRef Name="person_id" />
+            </Principal>
+            <Dependent Role="LIVING_SITUATION">
+              <PropertyRef Name="living_situation_person_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LIVING_SI__livin__403A8C7D">
+          <End Role="HOUSE_ADDRESS" Type="Self.HOUSE_ADDRESS" Multiplicity="1" />
+          <End Role="LIVING_SITUATION" Type="Self.LIVING_SITUATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOUSE_ADDRESS">
+              <PropertyRef Name="house_address_id" />
+            </Principal>
+            <Dependent Role="LIVING_SITUATION">
+              <PropertyRef Name="living_situation_house_address_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PERSON__person_g__412EB0B6">
+          <End Role="GENDER" Type="Self.GENDER" Multiplicity="0..1" />
+          <End Role="PERSON" Type="Self.PERSON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GENDER">
+              <PropertyRef Name="gender_id" />
+            </Principal>
+            <Dependent Role="PERSON">
+              <PropertyRef Name="person_gender_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="LuigDevModelStoreContainer">
+          <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Articles" EntityType="Self.Articles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GENDER" EntityType="Self.GENDER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HOUSE_ADDRESS" EntityType="Self.HOUSE_ADDRESS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LIVING_SITUATION" EntityType="Self.LIVING_SITUATION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PERSON" EntityType="Self.PERSON" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WorkInProgress" EntityType="Self.WorkInProgress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZIP" EntityType="Self.ZIP" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__HOUSE_ADD__house__3E52440B" Association="Self.FK__HOUSE_ADD__house__3E52440B">
+            <End Role="ZIP" EntitySet="ZIP" />
+            <End Role="HOUSE_ADDRESS" EntitySet="HOUSE_ADDRESS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LIVING_SI__livin__3F466844" Association="Self.FK__LIVING_SI__livin__3F466844">
+            <End Role="PERSON" EntitySet="PERSON" />
+            <End Role="LIVING_SITUATION" EntitySet="LIVING_SITUATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LIVING_SI__livin__403A8C7D" Association="Self.FK__LIVING_SI__livin__403A8C7D">
+            <End Role="HOUSE_ADDRESS" EntitySet="HOUSE_ADDRESS" />
+            <End Role="LIVING_SITUATION" EntitySet="LIVING_SITUATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PERSON__person_g__412EB0B6" Association="Self.FK__PERSON__person_g__412EB0B6">
+            <End Role="GENDER" EntitySet="GENDER" />
+            <End Role="PERSON" EntitySet="PERSON" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LuigDevModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -73,7 +192,100 @@
           <EntitySet Name="Articles" EntityType="Self.Article" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="WorkInProgresses" EntityType="Self.WorkInProgress" />
+          <EntitySet Name="C__RefactorLog" EntityType="LuigDevModel.C__RefactorLog" />
+          <EntitySet Name="GENDERs" EntityType="LuigDevModel.GENDER" />
+          <EntitySet Name="HOUSE_ADDRESS" EntityType="LuigDevModel.HOUSE_ADDRESS" />
+          <EntitySet Name="People" EntityType="LuigDevModel.PERSON" />
+          <EntitySet Name="ZIPs" EntityType="LuigDevModel.ZIP" />
+          <AssociationSet Name="FK__PERSON__person_g__412EB0B6" Association="LuigDevModel.FK__PERSON__person_g__412EB0B6">
+            <End Role="GENDER" EntitySet="GENDERs" />
+            <End Role="PERSON" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOUSE_ADD__house__3E52440B" Association="LuigDevModel.FK__HOUSE_ADD__house__3E52440B">
+            <End Role="ZIP" EntitySet="ZIPs" />
+            <End Role="HOUSE_ADDRESS" EntitySet="HOUSE_ADDRESS" />
+          </AssociationSet>
+          <AssociationSet Name="LIVING_SITUATION" Association="LuigDevModel.LIVING_SITUATION">
+            <End Role="PERSON" EntitySet="People" />
+            <End Role="HOUSE_ADDRESS" EntitySet="HOUSE_ADDRESS" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="C__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GENDER">
+          <Key>
+            <PropertyRef Name="gender_id" />
+          </Key>
+          <Property Name="gender_id" Type="Int32" Nullable="false" />
+          <Property Name="gender_name" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="gender_discription" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="People" Relationship="LuigDevModel.FK__PERSON__person_g__412EB0B6" FromRole="GENDER" ToRole="PERSON" />
+        </EntityType>
+        <EntityType Name="HOUSE_ADDRESS">
+          <Key>
+            <PropertyRef Name="house_address_id" />
+          </Key>
+          <Property Name="house_address_id" Type="Int32" Nullable="false" />
+          <Property Name="house_address_line_one" Type="String" Nullable="false" MaxLength="29" FixedLength="false" Unicode="false" />
+          <Property Name="house_address_line_two" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="house_address_zip_id" Type="Int32" />
+          <NavigationProperty Name="ZIP" Relationship="LuigDevModel.FK__HOUSE_ADD__house__3E52440B" FromRole="HOUSE_ADDRESS" ToRole="ZIP" />
+          <NavigationProperty Name="People" Relationship="LuigDevModel.LIVING_SITUATION" FromRole="HOUSE_ADDRESS" ToRole="PERSON" />
+        </EntityType>
+        <EntityType Name="PERSON">
+          <Key>
+            <PropertyRef Name="person_id" />
+          </Key>
+          <Property Name="person_id" Type="Int32" Nullable="false" />
+          <Property Name="person_first_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="person_last_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="person_email_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="person_gender_id" Type="Int32" />
+          <NavigationProperty Name="GENDER" Relationship="LuigDevModel.FK__PERSON__person_g__412EB0B6" FromRole="PERSON" ToRole="GENDER" />
+          <NavigationProperty Name="HOUSE_ADDRESS" Relationship="LuigDevModel.LIVING_SITUATION" FromRole="PERSON" ToRole="HOUSE_ADDRESS" />
+        </EntityType>
+        <EntityType Name="ZIP">
+          <Key>
+            <PropertyRef Name="zip_id" />
+          </Key>
+          <Property Name="zip_id" Type="Int32" Nullable="false" />
+          <Property Name="zip_code" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="zip_city" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="zip_state" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="HOUSE_ADDRESS" Relationship="LuigDevModel.FK__HOUSE_ADD__house__3E52440B" FromRole="ZIP" ToRole="HOUSE_ADDRESS" />
+        </EntityType>
+        <Association Name="FK__PERSON__person_g__412EB0B6">
+          <End Type="LuigDevModel.GENDER" Role="GENDER" Multiplicity="0..1" />
+          <End Type="LuigDevModel.PERSON" Role="PERSON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GENDER">
+              <PropertyRef Name="gender_id" />
+            </Principal>
+            <Dependent Role="PERSON">
+              <PropertyRef Name="person_gender_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOUSE_ADD__house__3E52440B">
+          <End Type="LuigDevModel.ZIP" Role="ZIP" Multiplicity="0..1" />
+          <End Type="LuigDevModel.HOUSE_ADDRESS" Role="HOUSE_ADDRESS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZIP">
+              <PropertyRef Name="zip_id" />
+            </Principal>
+            <Dependent Role="HOUSE_ADDRESS">
+              <PropertyRef Name="house_address_zip_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LIVING_SITUATION">
+          <End Type="LuigDevModel.PERSON" Role="PERSON" Multiplicity="*" />
+          <End Type="LuigDevModel.HOUSE_ADDRESS" Role="HOUSE_ADDRESS" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -110,6 +322,61 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="C__RefactorLog">
+            <EntityTypeMapping TypeName="LuigDevModel.C__RefactorLog">
+              <MappingFragment StoreEntitySet="__RefactorLog">
+                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GENDERs">
+            <EntityTypeMapping TypeName="LuigDevModel.GENDER">
+              <MappingFragment StoreEntitySet="GENDER">
+                <ScalarProperty Name="gender_discription" ColumnName="gender_discription" />
+                <ScalarProperty Name="gender_name" ColumnName="gender_name" />
+                <ScalarProperty Name="gender_id" ColumnName="gender_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HOUSE_ADDRESS">
+            <EntityTypeMapping TypeName="LuigDevModel.HOUSE_ADDRESS">
+              <MappingFragment StoreEntitySet="HOUSE_ADDRESS">
+                <ScalarProperty Name="house_address_zip_id" ColumnName="house_address_zip_id" />
+                <ScalarProperty Name="house_address_line_two" ColumnName="house_address_line_two" />
+                <ScalarProperty Name="house_address_line_one" ColumnName="house_address_line_one" />
+                <ScalarProperty Name="house_address_id" ColumnName="house_address_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="LuigDevModel.PERSON">
+              <MappingFragment StoreEntitySet="PERSON">
+                <ScalarProperty Name="person_gender_id" ColumnName="person_gender_id" />
+                <ScalarProperty Name="person_email_name" ColumnName="person_email_name" />
+                <ScalarProperty Name="person_last_name" ColumnName="person_last_name" />
+                <ScalarProperty Name="person_first_name" ColumnName="person_first_name" />
+                <ScalarProperty Name="person_id" ColumnName="person_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZIPs">
+            <EntityTypeMapping TypeName="LuigDevModel.ZIP">
+              <MappingFragment StoreEntitySet="ZIP">
+                <ScalarProperty Name="zip_state" ColumnName="zip_state" />
+                <ScalarProperty Name="zip_city" ColumnName="zip_city" />
+                <ScalarProperty Name="zip_code" ColumnName="zip_code" />
+                <ScalarProperty Name="zip_id" ColumnName="zip_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="LIVING_SITUATION" TypeName="LuigDevModel.LIVING_SITUATION" StoreEntitySet="LIVING_SITUATION">
+            <EndProperty Name="HOUSE_ADDRESS">
+              <ScalarProperty Name="house_address_id" ColumnName="living_situation_house_address_id" />
+            </EndProperty>
+            <EndProperty Name="PERSON">
+              <ScalarProperty Name="person_id" ColumnName="living_situation_person_id" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
