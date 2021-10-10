@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Managers\AuthorizationManager.cs" />
+    <Compile Include="Managers\PlayGroundModel.cs" />
+    <Compile Include="Managers\SQLPlayGroundManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

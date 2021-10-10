@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Luig.Business.Managers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -13,13 +14,13 @@ namespace Teaching.Controllers
         [HttpGet]
         public IHttpActionResult Execute ([FromBody] string InputType, [FromBody] string InputRequest)
         {
-            //if (InputType == "SQL")
-            //{
-
-            //}
-            //else
-            //    ok
-            return Ok();
+            var response = new List<SqlPlayGroundRow>();
+            if (InputType == "SQL")
+            {
+                var manager = new SQLPlayGroundManager();
+                response = manager.GetPlayGroundResponse(InputRequest);
+            }
+            return Ok(response);
         }
     }
 }

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4C0D1D5A-B144-4EC5-B89D-56F5249642EC}</ProjectGuid>
+    <ProjectGuid>{FA569C39-53BA-49E9-95E9-E9640BDF12E9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Luig.DAL</RootNamespace>
-    <AssemblyName>Luig.DAL</AssemblyName>
+    <RootNamespace>Luig.Dapper</RootNamespace>
+    <AssemblyName>Luig.Dapper</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -34,14 +34,7 @@
     <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\Teaching\packages\Dapper.2.0.90\lib\net461\Dapper.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\Teaching\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\Teaching\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -51,22 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthorizationDAL.cs" />
+    <Compile Include="Models\PlayGroundModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SQLPlaygroundDAL.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Luig.Dapper\Luig.Dapper.csproj">
-      <Project>{FA569C39-53BA-49E9-95E9-E9640BDF12E9}</Project>
-      <Name>Luig.Dapper</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Luig.DataModels\Luig.DataModels.csproj">
-      <Project>{CC0BFABB-9DA1-4299-8E20-7DE19541E67E}</Project>
-      <Name>Luig.DataModels</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

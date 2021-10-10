@@ -1,11 +1,7 @@
 ﻿using Luig.DataModels;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Luig.Utility
+namespace Luig.DAL
 {
     public class AuthorizationDAL
     {

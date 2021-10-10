@@ -1,5 +1,5 @@
 ﻿using Luig.Helpers;
-using Luig.Utility;
+using Luig.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
