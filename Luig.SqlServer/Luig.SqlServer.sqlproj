@@ -60,6 +60,7 @@
     <Build Include="Tables\WorkInProgress.sql" />
     <Build Include="Tables\Articles.sql" />
     <Build Include="Tables\Users.sql" />
+    <Build Include="Tables\PERSON.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Luig.SqlServer.refactorlog" />

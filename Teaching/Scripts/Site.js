@@ -1,8 +1,22 @@
 ﻿/// <reference path="jquery-3.4.1.intellisense.js" />
 
+$.ready(function () {
+    var loginScreen = document.getElementById(programKeyWords.LoginForm);
+    var bearerToken = sessionStorage.getItem(programKeyWords.BearerToken);
+    if (bearerToken) {
+        loginScreen.style.display = "none";
+    }
+});
+var programKeyWords = {
+    LoginForm: "LoginForm",
+    BearerToken: "BearerToken",
+    Results: "sqlQueryResults",
+    SqlInput: "sqlString"
+}
 var uriManager = {
     baseUrl : "api/values/",
-    access: "accesstoken"
+    access: "accesstoken",
+    Execute: () => uriManager.baseUrl + "Execute"
 
 }
 
@@ -18,14 +32,36 @@ function Authorize() {
     $.ajax({
         type: "POST",
         url: uriManager.access,
-        //contentType: 'application/json',
-       // dataType: 'json',
         beforeSend: function (request) {
             request.setRequestHeader("Authorization", bearer);
         },
-        data: bodyOfRequest,//JSON.stringify(bodyOfRequest),
+        data: bodyOfRequest,
         success : function (response) {
-            sessionStorage.setItem("access", response.access_token);
+            sessionStorage.setItem(programKeyWords.BearerToken, response.access_token);
+            var loginScreen = document.getElementById(programKeyWords.LoginForm);
+            if (bearerToken) {
+                loginScreen.style.display = "none";
+            }
         }
+        
     });
+}
+
+function SendTransactionRequest() {
+    let bearer = "Bearer " + sessionStorage.getItem(programKeyWords.BearerToken);
+    let sqlString = document.getElementById(programKeyWords.SqlInput).value
+    let requestContent = {
+        InputType: "SQL",
+        InputRequest: sqlString
+    };
+    $.post({
+        url: uriManager.Execute(),
+        beforeSend: function (request) {
+            request.setRequestHeader("Authorization", bearer);
+        },
+        data: requestContent,
+        success: function (response) {
+            document.getElementById(programKeyWords.Results) = response.Results;
+        }
+    })
 }
