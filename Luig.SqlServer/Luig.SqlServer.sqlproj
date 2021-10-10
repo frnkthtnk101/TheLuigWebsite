@@ -61,6 +61,10 @@
     <Build Include="Tables\Articles.sql" />
     <Build Include="Tables\Users.sql" />
     <Build Include="Tables\PERSON.sql" />
+    <Build Include="Tables\GENDER.sql" />
+    <Build Include="Tables\LIVING_SITUATION.sql" />
+    <Build Include="Tables\HOUSE_ADDRESS.sql" />
+    <Build Include="Tables\ZIP.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Luig.SqlServer.refactorlog" />
