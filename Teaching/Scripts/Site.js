@@ -2,12 +2,12 @@
 
 var uriManager = {
     baseUrl : "api/values/",
-    access : "accesstoken"
+    access: "accesstoken"
 
 }
 
 function Authorize() {
-    let bearer = "bearer Q01JUzMwOERTMzA4OndlYkFQSQ=="
+    let bearer = "Basic Q01JUzMwOERTMzA4OndlYkFQSQ=="
     var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;
     var bodyOfRequest = {
@@ -18,14 +18,14 @@ function Authorize() {
     $.ajax({
         type: "POST",
         url: uriManager.access,
-        contentType: 'application/json',
-        dataType: 'json',
+        //contentType: 'application/json',
+       // dataType: 'json',
         beforeSend: function (request) {
             request.setRequestHeader("Authorization", bearer);
         },
-        data: JSON.stringify(bodyOfRequest),
+        data: bodyOfRequest,//JSON.stringify(bodyOfRequest),
         success : function (response) {
-            sessionStorage.setItem("access", response);
+            sessionStorage.setItem("access", response.access_token);
         }
     });
 }
