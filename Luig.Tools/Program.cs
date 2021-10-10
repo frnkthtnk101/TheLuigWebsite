@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Luig.Tools.ConvertPlayUsersToDBSchema;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,7 @@ namespace Luig.Tools
     {
         static void Main(string[] args)
         {
-            using (var screen = new CreateUsers())
+            using (var screen = new CreateContent())
                 screen.Go();
         }
     }
