@@ -4,13 +4,7 @@ $(window).ready(function () {
     var loginScreen = document.getElementById(programKeyWords.LoginForm);
     var bearerToken = sessionStorage.getItem(programKeyWords.BearerToken);
     if (!bearerToken) {
-        var modalOptions = {
-            backdrop: 'static',
-            keyboard: false,
-            focus: true,
-            show: true
-        };
-        $('#LogonModal').modal(modalOptions);
+        ShowModal();
     }
 
 });
@@ -26,7 +20,15 @@ var uriManager = {
     Execute: () => uriManager.baseUrl + "Execute"
 
 }
-
+function ShowModal() {
+    var modalOptions = {
+        backdrop: 'static',
+        keyboard: false,
+        focus: true,
+        show: true
+    };
+    $('#LogonModal').modal(modalOptions);
+}
 function Authorize() {
     let bearer = "Basic Q01JUzMwOERTMzA4OndlYkFQSQ=="
     var email = document.getElementById("email").value;
@@ -100,6 +102,10 @@ function SendTransactionRequest() {
                 tableBody.append(tableRow);
             });
 
+        },
+        error: function (response) {
+            ShowModal();
+            localStorage.setItem("sqlPlayground", JSON.stringify(response));
         }
     })
 }

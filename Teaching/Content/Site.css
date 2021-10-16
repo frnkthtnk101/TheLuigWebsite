@@ -17,7 +17,9 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    position :center;
+    max-width :auto;
+    resize : none;
 }
 /* Button used to open the contact form - fixed at the bottom of the page */
 .open-button {
