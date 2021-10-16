@@ -5,20 +5,21 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Teaching.Models;
 
 namespace Teaching.Controllers
 {
     [Authorize]
     public class ValuesController : ApiController
     {
-        [HttpGet]
-        public IHttpActionResult Execute ([FromBody] string InputType, [FromBody] string InputRequest)
+        [HttpPost]
+        public IHttpActionResult Execute ([FromBody] ExecuteQueryRequest request)
         {
-            var response = new List<SqlPlayGroundRow>();
-            if (InputType == "SQL")
+            var response = new List<object>();
+            if (request.InputType == "SQL")
             {
                 var manager = new SQLPlayGroundManager();
-                response = manager.GetPlayGroundResponse(InputRequest);
+                response = manager.GetPlayGroundResponse(request.InputRequest);
             }
             return Ok(response);
         }

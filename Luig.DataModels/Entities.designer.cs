@@ -57,7 +57,7 @@ namespace Luig.DataModels
     #endregion
 		
 		public EntitiesDataContext() : 
-				base(global::Luig.DataModels.Properties.Settings.Default.LuigDevConnectionString1, mappingSource)
+				base(global::Luig.DataModels.Properties.Settings.Default.LuigDevConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

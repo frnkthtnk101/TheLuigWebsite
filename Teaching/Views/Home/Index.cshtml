@@ -1,32 +1,46 @@
 ﻿
-<div class="form-popup" id="LoginForm">
-    <div class="form-container">
-        <h1>Login</h1>
-        <label for="email"><b>Email</b></label>
-        <input id="email" type="text" placeholder="Enter Email" name="email" required />
-        <label for="psw"><b>Password</b></label>
-        <input id="password" type="password" placeholder="Enter Password" name="psw" required>
-        <button onclick="Authorize()" class="btn">Login</button>
+
+<div class="modal fade" show="true" id="LogonModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content form-container">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Login</h5>
+            </div>
+            <div class="modal-body ">
+                <label for="email"><b>Email</b></label>
+                <input id="email" type="text" placeholder="Enter Email" name="email" required />
+                <label for="psw"><b>Password</b></label>
+                <input id="password" type="password" placeholder="Enter Password" name="psw" required>
+                <span hidden="hidden" id="formError">Invalid Email or Password</span>
+            </div>
+            <div class="modal-footer">
+                <button onclick="Authorize()" class="btn">Login</button>
+            </div>
+        </div>
     </div>
 </div>
 <div class="row">
-    <div class="col-md-3"></div>
+    <div class="col"></div>
     <div class="col-md-6">
         <textarea id="sqlString"></textarea>
     </div>
-    <div class="col-md-3"></div>
+    <div class="col"></div>
 </div>
 <div class="row">
-    <div class="col-md-3"></div>
+    <div class="col"></div>
     <div class="col-md-6">
         <button onclick="SendTransactionRequest()" class="btn">Go;</button>
     </div>
-    <div class="col-md-3"></div>
+    <div class="col"></div>
 </div>
 <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-6" id="sqlQueryResults">
+    <div class="col"></div>
+    <div class="col-6 ">
+        <table class="table" id="sqlQueryResults">
+            <!--https://stackoverflow.com/questions/24615850/bootstrap-adding-rows-to-a-table-->
+            <thead></thead>
+            <tbody></tbody>
+        </table>
     </div>
-    <div class="col-md-3"></div>
+    <div class="col-"></div>
 </div>
-

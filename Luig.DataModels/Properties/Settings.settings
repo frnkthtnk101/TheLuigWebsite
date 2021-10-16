@@ -10,7 +10,7 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=DESKTOP-DSMRE2B;Initial Catalog=LuigDev;Integrated Security=True</Value>
     </Setting>
-    <Setting Name="LuigDevConnectionString1" Type="(Connection string)" Scope="Application">
+    <Setting Name="LuigDevConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
   &lt;ConnectionString&gt;Data Source=DESKTOP-DSMRE2B;Initial Catalog=LuigDev;Persist Security Info=True;User ID=Luig;Password=Luig;MultipleActiveResultSets=True;Application Name=EntityFramework&lt;/ConnectionString&gt;

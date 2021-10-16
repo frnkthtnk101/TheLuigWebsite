@@ -42,17 +42,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Managers\AuthorizationManager.cs" />
-    <Compile Include="Managers\PlayGroundModel.cs" />
     <Compile Include="Managers\SQLPlayGroundManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Luig.Dapper\Luig.Dapper.csproj">
+      <Project>{FA569C39-53BA-49E9-95E9-E9640BDF12E9}</Project>
+      <Name>Luig.Dapper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Luig.Helpers\Luig.Helpers.csproj">
       <Project>{964F83C3-47FF-472D-8BBD-E8601A09A37E}</Project>
       <Name>Luig.Helpers</Name>
     </ProjectReference>
     <ProjectReference Include="..\Luig.Utility\Luig.DAL.csproj">
-      <Project>{4C0D1D5A-B144-4EC5-B89D-56F5249642EC}</Project>
+      <Project>{4c0d1d5a-b144-4ec5-b89d-56f5249642ec}</Project>
       <Name>Luig.DAL</Name>
     </ProjectReference>
   </ItemGroup>

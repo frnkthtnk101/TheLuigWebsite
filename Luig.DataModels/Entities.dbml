@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="LuigDev" Class="EntitiesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-DSMRE2B;Initial Catalog=LuigDev;Persist Security Info=True;User ID=Luig;MultipleActiveResultSets=True;Application Name=EntityFramework" SettingsObjectName="Luig.DataModels.Properties.Settings" SettingsPropertyName="LuigDevConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-DSMRE2B;Initial Catalog=LuigDev;Persist Security Info=True;User ID=Luig;MultipleActiveResultSets=True;Application Name=EntityFramework" SettingsObjectName="Luig.DataModels.Properties.Settings" SettingsPropertyName="LuigDevConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Articles" Member="Articles">
     <Type Name="Article">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
