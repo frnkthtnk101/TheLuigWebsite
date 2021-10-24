@@ -62,7 +62,7 @@
       <Name>Luig.Dapper</Name>
     </ProjectReference>
     <ProjectReference Include="..\Luig.DataModels\Luig.DataModels.csproj">
-      <Project>{CC0BFABB-9DA1-4299-8E20-7DE19541E67E}</Project>
+      <Project>{ED9A807F-78B6-44C8-9D73-1AF5593515BD}</Project>
       <Name>Luig.DataModels</Name>
     </ProjectReference>
   </ItemGroup>

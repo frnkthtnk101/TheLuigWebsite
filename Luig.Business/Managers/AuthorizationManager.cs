@@ -17,10 +17,9 @@ namespace Luig.Business.Managers
             DataAccess = new AuthorizationDAL();
         }
 
-        public bool AuthorizeCredentials(string userName, string password)
+        public bool AuthorizeCredentials(int userName, int password)
         {
-            var protectedUserName = DataAccess.GetUsername(userName, password);
-            return !string.IsNullOrEmpty(protectedUserName);
+            return DataAccess.Authorize(userName, password);
         }
 
         public void Dispose()

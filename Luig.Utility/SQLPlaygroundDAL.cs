@@ -15,7 +15,7 @@ namespace Luig.DAL
         string ConnectionString { 
             get {
 
-                return ConfigurationManager.ConnectionStrings["Luig.DataModels.Properties.Settings.LuigDevConnectionString"].ConnectionString;
+                return ConfigurationManager.ConnectionStrings["LuigConnectionStringDapper"].ConnectionString;
             }
         }
         public List<object> GetData(string sql)

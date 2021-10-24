@@ -13,10 +13,10 @@ namespace Luig.DataModels
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class LuigDevEntities : DbContext
+    public partial class LuigConnectionString : DbContext
     {
-        public LuigDevEntities()
-            : base("name=LuigDevEntities")
+        public LuigConnectionString()
+            : base("name=LuigConnectionString")
         {
         }
     
@@ -25,12 +25,13 @@ namespace Luig.DataModels
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Article> Articles { get; set; }
+        public virtual DbSet<CUSTOMER> CUSTOMERs { get; set; }
+        public virtual DbSet<EMP> EMPs { get; set; }
+        public virtual DbSet<EMPLOYEE> EMPLOYEEs { get; set; }
+        public virtual DbSet<INVOICE> INVOICEs { get; set; }
+        public virtual DbSet<LINE> LINEs { get; set; }
+        public virtual DbSet<PRODUCT> PRODUCTs { get; set; }
+        public virtual DbSet<VENDOR> VENDORs { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<WorkInProgress> WorkInProgresses { get; set; }
-        public virtual DbSet<GENDER> GENDERs { get; set; }
-        public virtual DbSet<HOUSE_ADDRESS> HOUSE_ADDRESS { get; set; }
-        public virtual DbSet<PERSON> People { get; set; }
-        public virtual DbSet<ZIP> ZIPs { get; set; }
     }
 }

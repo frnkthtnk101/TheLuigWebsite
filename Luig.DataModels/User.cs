@@ -15,8 +15,8 @@ namespace Luig.DataModels
     public partial class User
     {
         public int UserId { get; set; }
-        public string UserName { get; set; }
-        public string UserPassword { get; set; }
+        public int UserName { get; set; }
+        public int UserPassword { get; set; }
         public int UserRole { get; set; }
     }
 }

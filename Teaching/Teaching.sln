@@ -9,8 +9,6 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Luig.SqlServer", "..\Luig.S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luig.Commons", "..\Luig.Commons\Luig.Commons.csproj", "{358A5E5B-228F-4DEF-8187-0A6462A1057C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luig.DataModels", "..\Luig.DataModels\Luig.DataModels.csproj", "{CC0BFABB-9DA1-4299-8E20-7DE19541E67E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luig.Tools", "..\Luig.Tools\Luig.Tools.csproj", "{F4480679-8D9B-45B1-8A5E-9CB1540BDBDB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luig.Business", "..\Luig.Business\Luig.Business.csproj", "{656AD1F2-76B5-43C4-9575-40261FF3E0C7}"
@@ -20,6 +18,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luig.Helpers", "..\Luig.Helpers\Luig.Helpers.csproj", "{964F83C3-47FF-472D-8BBD-E8601A09A37E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luig.Dapper", "..\Luig.Dapper\Luig.Dapper.csproj", "{FA569C39-53BA-49E9-95E9-E9640BDF12E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luig.DataModels", "..\Luig.DataModels\Luig.DataModels.csproj", "{ED9A807F-78B6-44C8-9D73-1AF5593515BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,6 @@ Global
 		{358A5E5B-228F-4DEF-8187-0A6462A1057C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{358A5E5B-228F-4DEF-8187-0A6462A1057C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{358A5E5B-228F-4DEF-8187-0A6462A1057C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CC0BFABB-9DA1-4299-8E20-7DE19541E67E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC0BFABB-9DA1-4299-8E20-7DE19541E67E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CC0BFABB-9DA1-4299-8E20-7DE19541E67E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CC0BFABB-9DA1-4299-8E20-7DE19541E67E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F4480679-8D9B-45B1-8A5E-9CB1540BDBDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F4480679-8D9B-45B1-8A5E-9CB1540BDBDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4480679-8D9B-45B1-8A5E-9CB1540BDBDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -65,6 +61,10 @@ Global
 		{FA569C39-53BA-49E9-95E9-E9640BDF12E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA569C39-53BA-49E9-95E9-E9640BDF12E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA569C39-53BA-49E9-95E9-E9640BDF12E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED9A807F-78B6-44C8-9D73-1AF5593515BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED9A807F-78B6-44C8-9D73-1AF5593515BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED9A807F-78B6-44C8-9D73-1AF5593515BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED9A807F-78B6-44C8-9D73-1AF5593515BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

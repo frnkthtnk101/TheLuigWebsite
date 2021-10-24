@@ -1,0 +1,493 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ph15574747011_LuigModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CUSTOMER">
+          <Key>
+            <PropertyRef Name="CUS_CODE" />
+          </Key>
+          <Property Name="CUS_CODE" Type="int" Nullable="false" />
+          <Property Name="CUS_LNAME" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="CUS_FNAME" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="CUS_INITIAL" Type="char" MaxLength="1" />
+          <Property Name="CUS_AREACODE" Type="char" MaxLength="3" />
+          <Property Name="CUS_PHONE" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="CUS_BALANCE" Type="numeric" Precision="9" Scale="2" />
+        </EntityType>
+        <EntityType Name="EMP">
+          <Key>
+            <PropertyRef Name="EMP_NUM" />
+          </Key>
+          <Property Name="EMP_NUM" Type="int" Nullable="false" />
+          <Property Name="EMP_TITLE" Type="char" MaxLength="10" />
+          <Property Name="EMP_LNAME" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="EMP_FNAME" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="EMP_INITIAL" Type="char" MaxLength="1" />
+          <Property Name="EMP_DOB" Type="datetime" />
+          <Property Name="EMP_HIRE_DATE" Type="datetime" />
+          <Property Name="EMP_AREACODE" Type="char" MaxLength="3" />
+          <Property Name="EMP_PHONE" Type="char" MaxLength="8" />
+          <Property Name="EMP_MGR" Type="int" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="EMP_NUM" />
+          </Key>
+          <Property Name="EMP_NUM" Type="int" Nullable="false" />
+          <Property Name="EMP_TITLE" Type="char" MaxLength="10" />
+          <Property Name="EMP_LNAME" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="EMP_FNAME" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="EMP_INITIAL" Type="char" MaxLength="1" />
+          <Property Name="EMP_DOB" Type="datetime" />
+          <Property Name="EMP_HIRE_DATE" Type="datetime" />
+          <Property Name="EMP_YEARS" Type="int" />
+          <Property Name="EMP_AREACODE" Type="char" MaxLength="3" />
+          <Property Name="EMP_PHONE" Type="char" MaxLength="8" />
+        </EntityType>
+        <EntityType Name="INVOICE">
+          <Key>
+            <PropertyRef Name="INV_NUMBER" />
+          </Key>
+          <Property Name="INV_NUMBER" Type="int" Nullable="false" />
+          <Property Name="CUS_CODE" Type="int" Nullable="false" />
+          <Property Name="INV_DATE" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LINE">
+          <Key>
+            <PropertyRef Name="INV_NUMBER" />
+            <PropertyRef Name="LINE_NUMBER" />
+          </Key>
+          <Property Name="INV_NUMBER" Type="int" Nullable="false" />
+          <Property Name="LINE_NUMBER" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="P_CODE" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="LINE_UNITS" Type="numeric" Precision="9" Scale="2" Nullable="false" />
+          <Property Name="LINE_PRICE" Type="numeric" Precision="9" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRODUCT">
+          <Key>
+            <PropertyRef Name="P_CODE" />
+          </Key>
+          <Property Name="P_CODE" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="P_DESCRIPT" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="P_INDATE" Type="datetime" Nullable="false" />
+          <Property Name="P_QOH" Type="int" Nullable="false" />
+          <Property Name="P_MIN" Type="int" Nullable="false" />
+          <Property Name="P_PRICE" Type="numeric" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="P_DISCOUNT" Type="numeric" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="V_CODE" Type="int" />
+        </EntityType>
+        <EntityType Name="VENDOR">
+          <Key>
+            <PropertyRef Name="V_CODE" />
+          </Key>
+          <Property Name="V_CODE" Type="int" Nullable="false" />
+          <Property Name="V_NAME" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="V_CONTACT" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="V_AREACODE" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="V_PHONE" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="V_STATE" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="V_ORDER" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="int" Nullable="false" />
+          <Property Name="UserPassword" Type="int" Nullable="false" />
+          <Property Name="UserRole" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__INVOICE__CUS_COD__31EC6D26">
+          <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
+          <End Role="INVOICE" Type="Self.INVOICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMER">
+              <PropertyRef Name="CUS_CODE" />
+            </Principal>
+            <Dependent Role="INVOICE">
+              <PropertyRef Name="CUS_CODE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LINE__INV_NUMBER__398D8EEE">
+          <End Role="INVOICE" Type="Self.INVOICE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LINE" Type="Self.LINE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INVOICE">
+              <PropertyRef Name="INV_NUMBER" />
+            </Principal>
+            <Dependent Role="LINE">
+              <PropertyRef Name="INV_NUMBER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LINE__P_CODE__3A81B327">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+          <End Role="LINE" Type="Self.LINE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="P_CODE" />
+            </Principal>
+            <Dependent Role="LINE">
+              <PropertyRef Name="P_CODE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRODUCT_V_CODE_FK">
+          <End Role="VENDOR" Type="Self.VENDOR" Multiplicity="0..1" />
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VENDOR">
+              <PropertyRef Name="V_CODE" />
+            </Principal>
+            <Dependent Role="PRODUCT">
+              <PropertyRef Name="V_CODE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ph15574747011_LuigModelStoreContainer">
+          <EntitySet Name="CUSTOMER" EntityType="Self.CUSTOMER" Schema="DataLuig" store:Type="Tables" />
+          <EntitySet Name="EMP" EntityType="Self.EMP" Schema="DataLuig" store:Type="Tables" />
+          <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" Schema="DataLuig" store:Type="Tables" />
+          <EntitySet Name="INVOICE" EntityType="Self.INVOICE" Schema="DataLuig" store:Type="Tables" />
+          <EntitySet Name="LINE" EntityType="Self.LINE" Schema="DataLuig" store:Type="Tables" />
+          <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" Schema="DataLuig" store:Type="Tables" />
+          <EntitySet Name="VENDOR" EntityType="Self.VENDOR" Schema="DataLuig" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__INVOICE__CUS_COD__31EC6D26" Association="Self.FK__INVOICE__CUS_COD__31EC6D26">
+            <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+            <End Role="INVOICE" EntitySet="INVOICE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LINE__INV_NUMBER__398D8EEE" Association="Self.FK__LINE__INV_NUMBER__398D8EEE">
+            <End Role="INVOICE" EntitySet="INVOICE" />
+            <End Role="LINE" EntitySet="LINE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LINE__P_CODE__3A81B327" Association="Self.FK__LINE__P_CODE__3A81B327">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="LINE" EntitySet="LINE" />
+          </AssociationSet>
+          <AssociationSet Name="PRODUCT_V_CODE_FK" Association="Self.PRODUCT_V_CODE_FK">
+            <End Role="VENDOR" EntitySet="VENDOR" />
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ph15574747011_LuigModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CUSTOMER">
+          <Key>
+            <PropertyRef Name="CUS_CODE" />
+          </Key>
+          <Property Name="CUS_CODE" Type="Int32" Nullable="false" />
+          <Property Name="CUS_LNAME" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CUS_FNAME" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CUS_INITIAL" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CUS_AREACODE" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="CUS_PHONE" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CUS_BALANCE" Type="Decimal" Precision="9" Scale="2" />
+          <NavigationProperty Name="INVOICEs" Relationship="Self.FK__INVOICE__CUS_COD__31EC6D26" FromRole="CUSTOMER" ToRole="INVOICE" />
+        </EntityType>
+        <EntityType Name="EMP">
+          <Key>
+            <PropertyRef Name="EMP_NUM" />
+          </Key>
+          <Property Name="EMP_NUM" Type="Int32" Nullable="false" />
+          <Property Name="EMP_TITLE" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="EMP_LNAME" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMP_FNAME" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMP_INITIAL" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="EMP_DOB" Type="DateTime" Precision="3" />
+          <Property Name="EMP_HIRE_DATE" Type="DateTime" Precision="3" />
+          <Property Name="EMP_AREACODE" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="EMP_PHONE" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="EMP_MGR" Type="Int32" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="EMP_NUM" />
+          </Key>
+          <Property Name="EMP_NUM" Type="Int32" Nullable="false" />
+          <Property Name="EMP_TITLE" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="EMP_LNAME" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMP_FNAME" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMP_INITIAL" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="EMP_DOB" Type="DateTime" Precision="3" />
+          <Property Name="EMP_HIRE_DATE" Type="DateTime" Precision="3" />
+          <Property Name="EMP_YEARS" Type="Int32" />
+          <Property Name="EMP_AREACODE" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="EMP_PHONE" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="INVOICE">
+          <Key>
+            <PropertyRef Name="INV_NUMBER" />
+          </Key>
+          <Property Name="INV_NUMBER" Type="Int32" Nullable="false" />
+          <Property Name="CUS_CODE" Type="Int32" Nullable="false" />
+          <Property Name="INV_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="CUSTOMER" Relationship="Self.FK__INVOICE__CUS_COD__31EC6D26" FromRole="INVOICE" ToRole="CUSTOMER" />
+          <NavigationProperty Name="LINEs" Relationship="Self.FK__LINE__INV_NUMBER__398D8EEE" FromRole="INVOICE" ToRole="LINE" />
+        </EntityType>
+        <EntityType Name="LINE">
+          <Key>
+            <PropertyRef Name="INV_NUMBER" />
+            <PropertyRef Name="LINE_NUMBER" />
+          </Key>
+          <Property Name="INV_NUMBER" Type="Int32" Nullable="false" />
+          <Property Name="LINE_NUMBER" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="P_CODE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LINE_UNITS" Type="Decimal" Precision="9" Scale="2" Nullable="false" />
+          <Property Name="LINE_PRICE" Type="Decimal" Precision="9" Scale="2" Nullable="false" />
+          <NavigationProperty Name="INVOICE" Relationship="Self.FK__LINE__INV_NUMBER__398D8EEE" FromRole="LINE" ToRole="INVOICE" />
+          <NavigationProperty Name="PRODUCT" Relationship="Self.FK__LINE__P_CODE__3A81B327" FromRole="LINE" ToRole="PRODUCT" />
+        </EntityType>
+        <EntityType Name="PRODUCT">
+          <Key>
+            <PropertyRef Name="P_CODE" />
+          </Key>
+          <Property Name="P_CODE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="P_DESCRIPT" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="P_INDATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="P_QOH" Type="Int32" Nullable="false" />
+          <Property Name="P_MIN" Type="Int32" Nullable="false" />
+          <Property Name="P_PRICE" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="P_DISCOUNT" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="V_CODE" Type="Int32" />
+          <NavigationProperty Name="LINEs" Relationship="Self.FK__LINE__P_CODE__3A81B327" FromRole="PRODUCT" ToRole="LINE" />
+          <NavigationProperty Name="VENDOR" Relationship="Self.PRODUCT_V_CODE_FK" FromRole="PRODUCT" ToRole="VENDOR" />
+        </EntityType>
+        <EntityType Name="VENDOR">
+          <Key>
+            <PropertyRef Name="V_CODE" />
+          </Key>
+          <Property Name="V_CODE" Type="Int32" Nullable="false" />
+          <Property Name="V_NAME" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="V_CONTACT" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="V_AREACODE" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="V_PHONE" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="V_STATE" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="V_ORDER" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PRODUCTs" Relationship="Self.PRODUCT_V_CODE_FK" FromRole="VENDOR" ToRole="PRODUCT" />
+        </EntityType>
+        <Association Name="FK__INVOICE__CUS_COD__31EC6D26">
+          <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
+          <End Role="INVOICE" Type="Self.INVOICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUSTOMER">
+              <PropertyRef Name="CUS_CODE" />
+            </Principal>
+            <Dependent Role="INVOICE">
+              <PropertyRef Name="CUS_CODE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LINE__INV_NUMBER__398D8EEE">
+          <End Role="INVOICE" Type="Self.INVOICE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LINE" Type="Self.LINE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INVOICE">
+              <PropertyRef Name="INV_NUMBER" />
+            </Principal>
+            <Dependent Role="LINE">
+              <PropertyRef Name="INV_NUMBER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LINE__P_CODE__3A81B327">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+          <End Role="LINE" Type="Self.LINE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="P_CODE" />
+            </Principal>
+            <Dependent Role="LINE">
+              <PropertyRef Name="P_CODE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRODUCT_V_CODE_FK">
+          <End Role="VENDOR" Type="Self.VENDOR" Multiplicity="0..1" />
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VENDOR">
+              <PropertyRef Name="V_CODE" />
+            </Principal>
+            <Dependent Role="PRODUCT">
+              <PropertyRef Name="V_CODE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LuigConnectionString" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CUSTOMERs" EntityType="Self.CUSTOMER" />
+          <EntitySet Name="EMPs" EntityType="Self.EMP" />
+          <EntitySet Name="EMPLOYEEs" EntityType="Self.EMPLOYEE" />
+          <EntitySet Name="INVOICEs" EntityType="Self.INVOICE" />
+          <EntitySet Name="LINEs" EntityType="Self.LINE" />
+          <EntitySet Name="PRODUCTs" EntityType="Self.PRODUCT" />
+          <EntitySet Name="VENDORs" EntityType="Self.VENDOR" />
+          <AssociationSet Name="FK__INVOICE__CUS_COD__31EC6D26" Association="Self.FK__INVOICE__CUS_COD__31EC6D26">
+            <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+            <End Role="INVOICE" EntitySet="INVOICEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LINE__INV_NUMBER__398D8EEE" Association="Self.FK__LINE__INV_NUMBER__398D8EEE">
+            <End Role="INVOICE" EntitySet="INVOICEs" />
+            <End Role="LINE" EntitySet="LINEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LINE__P_CODE__3A81B327" Association="Self.FK__LINE__P_CODE__3A81B327">
+            <End Role="PRODUCT" EntitySet="PRODUCTs" />
+            <End Role="LINE" EntitySet="LINEs" />
+          </AssociationSet>
+          <AssociationSet Name="PRODUCT_V_CODE_FK" Association="Self.PRODUCT_V_CODE_FK">
+            <End Role="VENDOR" EntitySet="VENDORs" />
+            <End Role="PRODUCT" EntitySet="PRODUCTs" />
+          </AssociationSet>
+          <EntitySet Name="Users" EntityType="ph15574747011_LuigModel.User" />
+        </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="Int32" Nullable="false" />
+          <Property Name="UserPassword" Type="Int32" Nullable="false" />
+          <Property Name="UserRole" Type="Int32" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ph15574747011_LuigModelStoreContainer" CdmEntityContainer="LuigConnectionString">
+          <EntitySetMapping Name="CUSTOMERs">
+            <EntityTypeMapping TypeName="ph15574747011_LuigModel.CUSTOMER">
+              <MappingFragment StoreEntitySet="CUSTOMER">
+                <ScalarProperty Name="CUS_CODE" ColumnName="CUS_CODE" />
+                <ScalarProperty Name="CUS_LNAME" ColumnName="CUS_LNAME" />
+                <ScalarProperty Name="CUS_FNAME" ColumnName="CUS_FNAME" />
+                <ScalarProperty Name="CUS_INITIAL" ColumnName="CUS_INITIAL" />
+                <ScalarProperty Name="CUS_AREACODE" ColumnName="CUS_AREACODE" />
+                <ScalarProperty Name="CUS_PHONE" ColumnName="CUS_PHONE" />
+                <ScalarProperty Name="CUS_BALANCE" ColumnName="CUS_BALANCE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPs">
+            <EntityTypeMapping TypeName="ph15574747011_LuigModel.EMP">
+              <MappingFragment StoreEntitySet="EMP">
+                <ScalarProperty Name="EMP_NUM" ColumnName="EMP_NUM" />
+                <ScalarProperty Name="EMP_TITLE" ColumnName="EMP_TITLE" />
+                <ScalarProperty Name="EMP_LNAME" ColumnName="EMP_LNAME" />
+                <ScalarProperty Name="EMP_FNAME" ColumnName="EMP_FNAME" />
+                <ScalarProperty Name="EMP_INITIAL" ColumnName="EMP_INITIAL" />
+                <ScalarProperty Name="EMP_DOB" ColumnName="EMP_DOB" />
+                <ScalarProperty Name="EMP_HIRE_DATE" ColumnName="EMP_HIRE_DATE" />
+                <ScalarProperty Name="EMP_AREACODE" ColumnName="EMP_AREACODE" />
+                <ScalarProperty Name="EMP_PHONE" ColumnName="EMP_PHONE" />
+                <ScalarProperty Name="EMP_MGR" ColumnName="EMP_MGR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPLOYEEs">
+            <EntityTypeMapping TypeName="ph15574747011_LuigModel.EMPLOYEE">
+              <MappingFragment StoreEntitySet="EMPLOYEE">
+                <ScalarProperty Name="EMP_NUM" ColumnName="EMP_NUM" />
+                <ScalarProperty Name="EMP_TITLE" ColumnName="EMP_TITLE" />
+                <ScalarProperty Name="EMP_LNAME" ColumnName="EMP_LNAME" />
+                <ScalarProperty Name="EMP_FNAME" ColumnName="EMP_FNAME" />
+                <ScalarProperty Name="EMP_INITIAL" ColumnName="EMP_INITIAL" />
+                <ScalarProperty Name="EMP_DOB" ColumnName="EMP_DOB" />
+                <ScalarProperty Name="EMP_HIRE_DATE" ColumnName="EMP_HIRE_DATE" />
+                <ScalarProperty Name="EMP_YEARS" ColumnName="EMP_YEARS" />
+                <ScalarProperty Name="EMP_AREACODE" ColumnName="EMP_AREACODE" />
+                <ScalarProperty Name="EMP_PHONE" ColumnName="EMP_PHONE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INVOICEs">
+            <EntityTypeMapping TypeName="ph15574747011_LuigModel.INVOICE">
+              <MappingFragment StoreEntitySet="INVOICE">
+                <ScalarProperty Name="INV_NUMBER" ColumnName="INV_NUMBER" />
+                <ScalarProperty Name="CUS_CODE" ColumnName="CUS_CODE" />
+                <ScalarProperty Name="INV_DATE" ColumnName="INV_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LINEs">
+            <EntityTypeMapping TypeName="ph15574747011_LuigModel.LINE">
+              <MappingFragment StoreEntitySet="LINE">
+                <ScalarProperty Name="INV_NUMBER" ColumnName="INV_NUMBER" />
+                <ScalarProperty Name="LINE_NUMBER" ColumnName="LINE_NUMBER" />
+                <ScalarProperty Name="P_CODE" ColumnName="P_CODE" />
+                <ScalarProperty Name="LINE_UNITS" ColumnName="LINE_UNITS" />
+                <ScalarProperty Name="LINE_PRICE" ColumnName="LINE_PRICE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTs">
+            <EntityTypeMapping TypeName="ph15574747011_LuigModel.PRODUCT">
+              <MappingFragment StoreEntitySet="PRODUCT">
+                <ScalarProperty Name="P_CODE" ColumnName="P_CODE" />
+                <ScalarProperty Name="P_DESCRIPT" ColumnName="P_DESCRIPT" />
+                <ScalarProperty Name="P_INDATE" ColumnName="P_INDATE" />
+                <ScalarProperty Name="P_QOH" ColumnName="P_QOH" />
+                <ScalarProperty Name="P_MIN" ColumnName="P_MIN" />
+                <ScalarProperty Name="P_PRICE" ColumnName="P_PRICE" />
+                <ScalarProperty Name="P_DISCOUNT" ColumnName="P_DISCOUNT" />
+                <ScalarProperty Name="V_CODE" ColumnName="V_CODE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VENDORs">
+            <EntityTypeMapping TypeName="ph15574747011_LuigModel.VENDOR">
+              <MappingFragment StoreEntitySet="VENDOR">
+                <ScalarProperty Name="V_CODE" ColumnName="V_CODE" />
+                <ScalarProperty Name="V_NAME" ColumnName="V_NAME" />
+                <ScalarProperty Name="V_CONTACT" ColumnName="V_CONTACT" />
+                <ScalarProperty Name="V_AREACODE" ColumnName="V_AREACODE" />
+                <ScalarProperty Name="V_PHONE" ColumnName="V_PHONE" />
+                <ScalarProperty Name="V_STATE" ColumnName="V_STATE" />
+                <ScalarProperty Name="V_ORDER" ColumnName="V_ORDER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ph15574747011_LuigModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserRole" ColumnName="UserRole" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

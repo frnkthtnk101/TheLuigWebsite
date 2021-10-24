@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CC0BFABB-9DA1-4299-8E20-7DE19541E67E}</ProjectGuid>
+    <ProjectGuid>{ED9A807F-78B6-44C8-9D73-1AF5593515BD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Luig.DataModels</RootNamespace>
@@ -32,15 +32,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\Luig\Teaching\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\Teaching\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\Luig\Teaching\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\Teaching\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -51,61 +50,73 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Database.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Database.Context.tt</DependentUpon>
+    <Compile Include="CUSTOMER.cs">
+      <DependentUpon>LuigDatabase.tt</DependentUpon>
     </Compile>
-    <Compile Include="Database.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Database.edmx</DependentUpon>
+    <Compile Include="EMP.cs">
+      <DependentUpon>LuigDatabase.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities.designer.cs">
+    <Compile Include="EMPLOYEE.cs">
+      <DependentUpon>LuigDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="INVOICE.cs">
+      <DependentUpon>LuigDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LINE.cs">
+      <DependentUpon>LuigDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LuigDatabase.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Entities.dbml</DependentUpon>
+      <DependentUpon>LuigDatabase.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LuigDatabase.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LuigDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LuigDatabase.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LuigDatabase.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="PRODUCT.cs">
+      <DependentUpon>LuigDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
+    <Compile Include="User.cs">
+      <DependentUpon>LuigDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VENDOR.cs">
+      <DependentUpon>LuigDatabase.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Database.edmx">
+    <EntityDeploy Include="LuigDatabase.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Database.Designer.cs</LastGenOutput>
+      <LastGenOutput>LuigDatabase.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="Database.edmx.diagram">
-      <DependentUpon>Database.edmx</DependentUpon>
-    </None>
-    <None Include="Entities.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>Entities.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Entities.dbml.layout">
-      <DependentUpon>Entities.dbml</DependentUpon>
+    <None Include="LuigDatabase.edmx.diagram">
+      <DependentUpon>LuigDatabase.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Database.Context.tt">
+    <Content Include="LuigDatabase.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Database.Context.cs</LastGenOutput>
+      <LastGenOutput>LuigDatabase.Context.cs</LastGenOutput>
+      <DependentUpon>LuigDatabase.edmx</DependentUpon>
+    </Content>
+    <Content Include="LuigDatabase.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LuigDatabase.edmx</DependentUpon>
+      <LastGenOutput>LuigDatabase.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

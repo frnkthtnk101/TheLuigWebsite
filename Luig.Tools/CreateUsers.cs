@@ -28,9 +28,18 @@ namespace Luig.Tools
                 if (string.IsNullOrEmpty(username)) break;
                 var password = GetInput("password : ");
                 if (string.IsNullOrEmpty(password)) break;
-                var protectedUserName = Authorizer.ProtectString(username);
-                var protectedPassword = Authorizer.ProtectString(password);
-                CreateUser.Create(protectedUserName, protectedPassword, Commons.UserRoles.Student);
+                Console.WriteLine($@"USE [ph15574747011_Luig]
+GO
+
+INSERT INTO[dbo].[Users]
+           ([UserName]
+           ,[UserPassword]
+           ,[UserRole])
+     VALUES
+           ({username.GetHashCode()}
+           ,{password.GetHashCode()}
+           ,1)
+GO");
             }
         }
 

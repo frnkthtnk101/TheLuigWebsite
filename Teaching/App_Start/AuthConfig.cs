@@ -22,8 +22,8 @@ namespace Teaching.App_Start
                 OnGrantResourceOwnerCredentials = async context =>
                 {
                     var authorizer = new AuthorizationManager();
-                    var protectedUserName = authorizer.ProtectString(context.UserName);
-                    var protectedPassword = authorizer.ProtectString(context.Password);
+                    var protectedUserName = context.UserName.GetHashCode();
+                    var protectedPassword = context.Password.GetHashCode();
                     var authorizedUser = authorizer.AuthorizeCredentials(protectedUserName, protectedPassword);
                     if (authorizedUser)
                     {

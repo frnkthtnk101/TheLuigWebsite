@@ -259,10 +259,6 @@
       <Project>{358a5e5b-228f-4def-8187-0a6462a1057c}</Project>
       <Name>Luig.Commons</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Luig.DataModels\Luig.DataModels.csproj">
-      <Project>{cc0bfabb-9da1-4299-8e20-7de19541e67e}</Project>
-      <Name>Luig.DataModels</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

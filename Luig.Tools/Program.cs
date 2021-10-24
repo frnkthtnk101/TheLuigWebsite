@@ -15,7 +15,7 @@ namespace Luig.Tools
     {
         static void Main(string[] args)
         {
-            using (var screen = new CreateContent())
+            using (var screen = new CreateUsers())
                 screen.Go();
         }
     }

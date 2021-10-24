@@ -12,12 +12,15 @@ namespace Luig.DataModels
     using System;
     using System.Collections.Generic;
     
-    public partial class Article
+    public partial class LINE
     {
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public string SubTitle { get; set; }
-        public string Anchor { get; set; }
-        public string ImagePath { get; set; }
+        public int INV_NUMBER { get; set; }
+        public decimal LINE_NUMBER { get; set; }
+        public string P_CODE { get; set; }
+        public decimal LINE_UNITS { get; set; }
+        public decimal LINE_PRICE { get; set; }
+    
+        public virtual INVOICE INVOICE { get; set; }
+        public virtual PRODUCT PRODUCT { get; set; }
     }
 }

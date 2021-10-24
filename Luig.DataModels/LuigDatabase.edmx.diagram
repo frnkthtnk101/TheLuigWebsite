@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="61af1442c42e4eb894cb9cb203c380f2" Name="Diagram1">
+        <EntityTypeShape EntityType="ph15574747011_LuigModel.CUSTOMER" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ph15574747011_LuigModel.EMP" Width="1.5" PointX="11.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ph15574747011_LuigModel.EMPLOYEE" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ph15574747011_LuigModel.INVOICE" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ph15574747011_LuigModel.LINE" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ph15574747011_LuigModel.PRODUCT" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ph15574747011_LuigModel.VENDOR" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="ph15574747011_LuigModel.FK__INVOICE__CUS_COD__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="ph15574747011_LuigModel.FK__LINE__INV_NUMBER__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="ph15574747011_LuigModel.FK__LINE__P_CODE__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="ph15574747011_LuigModel.PRODUCT_V_CODE_FK" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ph15574747011_LuigModel.User" Width="1.5" PointX="5.375" PointY="6.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

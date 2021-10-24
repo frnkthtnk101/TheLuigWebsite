@@ -12,12 +12,12 @@ namespace Luig.Tools
     {
         public static void Create(string userName, string password, UserRoles role)
         {
-            using (var db = new LuigDevEntities())
+            using (var db = new LuigConnectionString())
             {
                 var user = new User()
                 {
-                    UserName = userName,
-                    UserPassword = password,
+                    UserName = userName.GetHashCode(),
+                    UserPassword = password.GetHashCode(),
                     UserRole = (int)role
                 };
                 db.Users.Add(user);
